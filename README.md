@@ -1,28 +1,22 @@
-My tf module to provision an rds mysql database with custom vpc and rds deployed on a private subnet 
+# Terraform AWS RDS MySQL Module
 
+## Description
 
+This Terraform module deploys an AWS RDS MySQL database in a custom VPC. The RDS instance is placed in a private subnet for enhanced security.
 
-Sample Usage
+## Usage
 
-module "eks-module" {
-  source         = "github.com/ooghenekaro/module-test"
-  region         = "Enter your Providers region here"
-  vpc_cidr       = "10.0.0.0/16"
-  dns_hostnames  = true
-  dns_support    = true
-  pub_one_cidr   = "10.0.1.0/24"
-  pub_two_cidr   = "10.0.2.0/24"
-  priv_one_cidr  = "10.0.3.0/24"
-  priv_two_cidr  = "10.0.4.0/24"
-  az_one         = "Enter your first az"
-  az_two         = "Enter your second az"
-  vpc_id         = "aws_vpc.eks_vpc.id"
-  eks_version    = "1.26"
-  ami_type       = "AL2_x86_64"
-  instance_types = ["t3.small", "t3.medium", "t3.large"]
-  capacity_type  = "ON_DEMAND"
-
-}
-
-
-
+```hcl
+module "rds_mysql" {
+  source                    = "./terraform-aws-rds-mysql"
+  region                    = "us-west-2"
+  vpc_cidr                  = "10.0.0.0/16"
+  private_subnet_1_cidr     = "10.0.1.0/24"
+  availability_zone_1       = "us-west-2a"
+  private_subnet_2_cidr     = "10.0.2.0/24"
+  availability_zone_2       = "us-west-2b"
+  db_instance_identifier    = "mydbinstance"
+  allocated_storage         = 20
+  instance_class            = "db.t2.micro"
+  db_username               = "admin"
+  db_password = "YourSecurePassword123"
