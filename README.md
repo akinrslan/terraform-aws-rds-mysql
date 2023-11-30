@@ -1,14 +1,14 @@
 # Terraform AWS RDS MySQL Module
 
-## Description
+## Overview
 
-This Terraform module deploys an AWS RDS MySQL database in a custom VPC. The RDS instance is placed in a private subnet for enhanced security.
+This Terraform module creates an AWS RDS MySQL instance within a VPC, spanning multiple availability zones.
 
 ## Usage
 
 ```hcl
 module "rds_mysql" {
-  source                    = "./terraform-aws-rds-mysql"
+  source                    = "git::https://example.com/path/to/terraform-aws-rds-mysql.git"
   region                    = "us-west-2"
   vpc_cidr                  = "10.0.0.0/16"
   private_subnet_1_cidr     = "10.0.1.0/24"
@@ -19,4 +19,6 @@ module "rds_mysql" {
   allocated_storage         = 20
   instance_class            = "db.t2.micro"
   db_username               = "admin"
-  db_password = "YourSecurePassword123"
+  db_password               = "YourSecurePassword123"
+  db_subnet_group_name      = "mydbsubnetgroup"
+}
