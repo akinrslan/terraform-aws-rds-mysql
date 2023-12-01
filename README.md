@@ -1,30 +1,19 @@
-# Terraform AWS RDS MySQL Module
+Copy code
+# Terraform AWS RDS Module
 
-## Overview
-
-This Terraform module creates an AWS RDS MySQL instance within a VPC, spanning multiple availability zones.
+This Terraform module provisions an AWS RDS instance.
 
 ## Usage
 
 ```hcl
-module "rds_mysql" {
-  source  = "akinrslan/rds-mysql/aws"
-  version = "1.0.0"
-  region                    = "your region"
-  vpc_cidr                  = "10.0.0.0/16"
-  private_subnet_1_cidr     = "10.0.1.0/24"
-  availability_zone_1       = "your az"
-  private_subnet_2_cidr     = "10.0.2.0/24"
-  availability_zone_2       = "your az"
-  db_instance_identifier    = "mydbinstance"
-  allocated_storage         = 20
-  instance_class            = "db.t2.micro"
-  db_username               = "admin"
-  db_password               = "YourSecurePassword123"
-  db_subnet_group_name      = "mydbsubnetgroup"
+module "rds" {
+  source          = "akinrslan/terraform-AWS-RDS-Module.git"
+  vpc_cidr        = "10.0.0.0/16"
+  subnet_cidr     = "10.0.3.0/24"
+  subnet_cidr_2   = "10.0.4.0/24"
+  db_username     = "admin"
+  db_password     = "yourpassword"
+  region          = "us-west-2"
+  az_one          = "Enter your first az"
+  az_two          = "Enter your second az"
 }
-
-
-```hcl
-
-
