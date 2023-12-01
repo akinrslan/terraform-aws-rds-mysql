@@ -29,4 +29,3 @@ module "rds_mysql" {
 ```hcl
 
 
-Remember to replace `"your-registry-username"` in the `source` attribute with your actual username or organization name on the Terraform registry.
