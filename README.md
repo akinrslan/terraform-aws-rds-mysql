@@ -8,7 +8,6 @@ This Terraform module creates an AWS RDS MySQL instance within a VPC, spanning m
 
 ```hcl
 module "rds_mysql" {
-  module "rds-mysql" {
   source  = "akinrslan/rds-mysql/aws"
   version = "1.0.8"
   region                    = "your region"
