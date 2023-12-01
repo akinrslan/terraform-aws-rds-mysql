@@ -17,3 +17,4 @@ module "rds" {
   az_one          = "Enter your first az"
   az_two          = "Enter your second az"
 }
+```hcl
