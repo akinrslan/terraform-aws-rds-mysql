@@ -6,17 +6,23 @@ This Terraform module provisions an AWS RDS instance.
 ## Usage
 
 module "rds_mysql" {
-  source                = "akinrslan/terraform-AWS-RDS-Module/aws"
-  version               = "1.0.1"
-  db_instance_identifier = "mydbinstance"
-  allocated_storage     = 20
-  instance_class        = "db.t2.micro"
-  db_username           = "admin"
-  db_password           = "yourpassword"
-  region                = "us-west-2"
-  vpc_cidr              = "10.0.0.0/16"
-  subnet_cidr           = "10.0.3.0/24"
-  subnet_cidr_2         = "10.0.4.0/24"
-  az_one                = "Enter your first az"
-  az_two                = "Enter your second az"
+  source  = "akinrslan/rds-mysql/aws"
+  version = "1.0.6"
+  region                    = "your region"
+  vpc_cidr                  = "10.0.0.0/16"
+  private_subnet_1_cidr     = "10.0.1.0/24"
+  availability_zone_1       = "your az"
+  private_subnet_2_cidr     = "10.0.2.0/24"
+  availability_zone_2       = "your az"
+  db_instance_identifier    = "mydbinstance"
+  allocated_storage         = 20
+  instance_class            = "db.t2.micro"
+  db_username               = "admin"
+  db_password               = "YourSecurePassword123"
+  db_subnet_group_name      = "mydbsubnetgroup"
 }
+
+}
+
+```hcl
+Remember to replace `"your-registry-username"` in the `source` attribute with your actual username or organization name on the Terraform registry.
